@@ -153,15 +153,20 @@ font-size:90%;
 }
 
 .ThemeChangewrapper{
-  height:5rem;
-  width:5rem;
+  height:3.3rem;
+  width:4.3rem;
   margin:1% 5% 0% 89%;
-  background-image:linear-gradient(red, blue);
-  border-radius:100%;
   word-wrap:break-word;
   font-family:calibri;
   font-weight:bolder;
   overflow: hidden;
+  transition:border-radius 2s;
+  background-image:linear-gradient(red, blue);
+  font-size:13px;
+}
+
+.ThemeChangewrapper:hover{
+  border-radius:100%;
 }
 
 

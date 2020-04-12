@@ -1,6 +1,6 @@
 import React, {useState, createRef, useEffect} from 'react';
 import '../btstyle.css';
-import '../App.css';
+import '../CSS/style.css';
 import greenlight from '../CSS/greenlight.png'
 import redlight from '../CSS/red_light.png'
 import darklight from '../CSS/hal_9000.png'

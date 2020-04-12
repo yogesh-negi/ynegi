@@ -9,3 +9,13 @@ things need to update in calculator app
 2. look for the operator value if its blank then do nothing if its not blank then first remove the hide field properties from 
 second field and apply to firstvalue[done]
 3. then look for the onclick of = operator then again set hide properties to secondvalue field[done]
+
+
+
+
+
+
+things need in ludo project
+1. make a small screen for login details in the screen there will be a start button, on clicking start button their will be a popup that will ask for player name.
+2. after that will display ludo image
+ 

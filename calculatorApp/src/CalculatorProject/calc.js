@@ -1,6 +1,6 @@
 import React from 'react';
 import '../btstyle.css';
-import '../App.css';
+import '../CSS/style.css';
 
 export function ChangeTheme (){	
 	const changeTheme = () => {
