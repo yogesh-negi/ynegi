@@ -1,0 +1,114 @@
+.container-fluid {
+	background:linear-gradient(20deg,red,blue,purple);
+	min-height:100vh;
+	border:1px solid blue;
+}
+
+
+.list {
+	background-image:linear-gradient(blue,red);
+	color:transparent;
+	font-size:3vh;
+	-webkit-background-clip:text;
+	-webkit-text-stroke:0.1px white;
+}
+
+
+.list > p {
+	border-bottom:1px solid red;
+}
+
+
+input:focus {
+	box-shadow:0px 0px 25px blue;
+}
+
+
+h1{
+	font-size:5vh;
+	font-weight:bolder;
+	background:linear-gradient(red,blue);
+	-webkit-background-clip:text;
+	color:transparent;
+	box-shadow:0px 10px 10px 0px blue;
+	-webkit-text-stroke:0.1px white;
+	border-radius:10px;
+}
+
+h6 {
+	font-size:3vh;
+	background:linear-gradient(red,blue);
+	-webkit-background-clip:text;
+	color:transparent;
+	border-radius:10px;
+}
+
+
+input[type="text"]{
+	min-width:30vw;
+	max-height:5vh;
+	background:linear-gradient(4deg,red,blue);
+	font-size:3vh;
+	border:none;
+	font-weight:bolder;
+	color:transparent;
+	-webkit-text-stroke:0.2px white;
+	-webkit-background-clip:text;
+	padding:10px;
+	border-radius:10px;
+}
+
+
+.submitbutton {
+	max-height:5vh;
+	height:5vh;
+	width:auto;
+	overflow:hidden;
+}
+
+.submitbutton:hover {
+	box-shadow:0px 0px 7px 2px red;
+	border-radius:50px;
+}
+
+
+img {
+height:2vh;
+width:2vh;
+float:right;
+border-radius:10%;
+}
+
+.todolist2 {
+margin-left:25vw;
+color:transparent;
+font-size:3vh;
+background:linear-gradient(blue,red);
+-webkit-background-clip:text;
+-webkit-text-stroke:0.1px red;
+}
+
+
+.todolist2 > li {
+	border-bottom:1px solid purple;
+}
+
+input[type="checkbox"]{
+	height:3vh;
+	width:3vh;
+}
+
+
+div > .row {
+	background:black;
+	border:none;
+	border-radius: 10px;
+	position:sticky;
+}
+
+
+
+
+
+
+

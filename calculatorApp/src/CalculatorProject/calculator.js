@@ -121,7 +121,7 @@ useEffect(()=>{
 		<div className="normalViewContainer">
 		<img src={image} alt="light" id="img" />
 		<h1> Calculator </h1>
-		<input type="text" className="normalviewinputType" id="operator"/><input type="text" value={secondValue} onChange={setterFunction} className="normalviewinputType" id="input2" /><input type="text" placeholder="0" ref={inputRefvalueone} value={firstValue}  onChange={setterFunction} className="normalviewinputType" id="input1" />
+		<input type="text" className="normalviewinputType" onChange={operatorHandler} id="operator"/><input type="text" value={secondValue} onChange={setterFunction} className="normalviewinputType" id="input2" /><input type="text" placeholder="0" ref={inputRefvalueone} value={firstValue}  onChange={setterFunction} className="normalviewinputType" id="input1" />
 		<br/>
 		<button value={1} className="normalViewButton" onClick={setterFunction}> 1 </button><button value={2} className="normalViewButton" onClick={setterFunction}> 2 </button><button value={3} className="normalViewButton" onClick={setterFunction}> 3 </button><button value={"+"} className="normalViewButton" onClick={operatorHandler}> + </button><br/>
 		<button value={4} className="normalViewButton" onClick={setterFunction}> 4 </button><button value={5} className="normalViewButton" onClick={setterFunction}> 5 </button><button value={6} className="normalViewButton" onClick={setterFunction}> 6 </button><button value={"-"} className="normalViewButton" onClick={operatorHandler}> - </button><br/>
