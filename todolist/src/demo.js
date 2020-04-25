@@ -25,7 +25,7 @@ counterfunction = (e) => {
 addTolist = () =>{
 	if(this.state.task){
 		this.setState({
-	list:[this.state.task,...this.state.list],
+	list:[...this.state.list,this.state.task],
 	totalTasks:this.state.totalTasks+1,
 	pendingTask:this.state.pendingTask+1
 })
@@ -35,15 +35,25 @@ addTolist = () =>{
 }
 removeItem = (e) => {
 var checkbox = document.getElementById("checkbox"+e.target.id)
-
-if(checkbox.checked){
-	document.querySelector(".p"+e.target.id).remove()
+var list = this.state.list
+var value = checkbox.parentElement.textContent
+var index = list.indexOf(value.trim())
+var updatedList = [];
+if(checkbox.checked && list.length > 1){
+	list.splice(index,1)
+	updatedList = list
 	this.setState({
+		list:updatedList,
+		totalTasks:this.state.totalTasks-1,
+		doneTasks:this.state.doneTasks - 1,
+	})
+} else if (checkbox.checked && list.length === 1){
+	this.setState({
+		list:updatedList,
 		totalTasks:this.state.totalTasks-1,
 		doneTasks:this.state.doneTasks - 1,
 	})
 }
-
 }
 	
 updatePendingtodos = (e) => {
@@ -71,12 +81,12 @@ checkbox.parentElement.style.textDecorationLine = ""
 			<h1 className="m-4"> TO DO LIST </h1>
 			<p className="btn-group"><input type="text" placeholder="Add your task here...." value={this.state.task} onChange={this.counterfunction}/>
 			<img src= {addtodo} onClick={this.addTolist} className="submitbutton ml-3"/></p>
-			{
-				this.state.list.map((list,i)=>
+				{
+					this.state.list.map((list,i)=>
 
-				(<div className={"todolist2 col-6 text-left p"+i}><li id={"li"+i} className="list-unstyled m-3"><input type="checkbox" onClick={this.updatePendingtodos} id={"checkbox"+i} /> {list} <img src={wrong} id={i} onClick={this.removeItem}/></li></div>)
+				(<div className={"todolist2 col-6 text-left p"+i}><li id={"li"+i} className="list-unstyled m-3"><input type="checkbox" onClick={this.updatePendingtodos} id={"checkbox"+i}/> {list} <img src={wrong} id={i} onClick={this.removeItem}/></li></div>)
 				)
-			}
+				}
 			<h1 className="m-4"> To Do Summary</h1>
 			</div>
 			<div className="col-6 ml-5 text-center">
