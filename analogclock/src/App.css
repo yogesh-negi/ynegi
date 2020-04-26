@@ -1,114 +1,114 @@
-.container-fluid {
-	background:linear-gradient(20deg,red,blue,purple);
-	min-height:100vh;
-	border:1px solid blue;
+
+section {
+	display:block;
+	align-items: center;
+	height:auto;
+	padding:1%;
 }
 
 
-.list {
-	background-image:linear-gradient(blue,red);
-	color:transparent;
-	font-size:3vh;
-	-webkit-background-clip:text;
-	-webkit-text-stroke:0.1px white;
+.clockbody {
+	height:200px;
+	width:200px;
+	margin:100px 0px 100px 200px;
+	border-radius:100%;
+	border:10px solid red;
+	background-image: linear-gradient(white,blue);
+	position:absolute;
+	z-index:-1;
+}
+
+#secondsHand {
+	position:absolute;
+	margin:-33px 0px 0px -35px;
+	transform:rotate(0deg);
+	height:250px;
+}
+#minuteHand {
+	position:absolute;
+	margin:-33px 0px 0px -35px;
+	transform:rotate(0deg);
+	height:250px;
+}
+#hourHand {
+	position:absolute;
+	margin:1px 0px 0px 0px;
+	transform:rotate(0deg);
+	height:180px;
+}
+
+.digits {
+	float:right;
+}
+
+.digits :nth-Child(1){
+	margin:0px 0px 0px -97px ;
+	color:red;
+	position:absolute;
+}
+
+.digits :nth-Child(2){
+	margin:78px 0px 0px -15px ;
+	color:red;
+	position:absolute;
+}
+
+.digits :nth-Child(3){
+	margin:155px 0px 0px -95px ;
+	color:red;
+	position:absolute;
+}
+
+.digits :nth-Child(4){
+	margin:80px 0px 0px -175px ;
+	color:red;
+	position:absolute;
 }
 
 
-.list > p {
-	border-bottom:1px solid red;
-}
-
-
-input:focus {
-	box-shadow:0px 0px 25px blue;
-}
-
-
-h1{
-	font-size:5vh;
-	font-weight:bolder;
-	background:linear-gradient(red,blue);
-	-webkit-background-clip:text;
-	color:transparent;
-	box-shadow:0px 10px 10px 0px blue;
-	-webkit-text-stroke:0.1px white;
-	border-radius:10px;
-}
-
-h6 {
-	font-size:3vh;
-	background:linear-gradient(red,blue);
-	-webkit-background-clip:text;
-	color:transparent;
-	border-radius:10px;
-}
-
-
-input[type="text"]{
-	min-width:30vw;
-	max-height:5vh;
-	background:linear-gradient(4deg,red,blue);
-	font-size:3vh;
-	border:none;
-	font-weight:bolder;
-	color:transparent;
-	-webkit-text-stroke:0.2px white;
-	-webkit-background-clip:text;
-	padding:10px;
-	border-radius:10px;
-}
-
-
-.submitbutton {
-	max-height:5vh;
-	height:5vh;
-	width:auto;
-	overflow:hidden;
-}
-
-.submitbutton:hover {
-	box-shadow:0px 0px 7px 2px red;
-	border-radius:50px;
-}
-
-
-img {
-height:2vh;
-width:2vh;
-float:right;
-border-radius:10%;
-}
-
-.todolist2 {
-margin-left:25vw;
-color:transparent;
-font-size:3vh;
-background:linear-gradient(blue,red);
--webkit-background-clip:text;
--webkit-text-stroke:0.1px red;
-}
-
-
-.todolist2 > li {
-	border-bottom:1px solid purple;
-}
-
-input[type="checkbox"]{
-	height:3vh;
-	width:3vh;
-}
-
-
-div > .row {
-	background:black;
-	border:none;
-	border-radius: 10px;
-	position:sticky;
+#secondsIndicator{
+	position:absolute;
+	z-index:-1;
+	margin:90px 0px 0px 35px;
+	transform:rotate(0deg);
 }
 
 
 
 
+#secondsHand2 {
+	position:absolute;
+	margin:-33px 0px 0px -35px;
+	transform:rotate(0deg);
+	height:250px;
+	animation:secondHand 3.1s infinite;
+	animation-play-state:all;
+}
+#minuteHand2 {
+	position:absolute;
+	margin:-33px 0px 0px -35px;
+	transform:rotate(0deg);
+	height:250px;
+	animation:secondHand 2.8s infinite;
+	animation-play-state:all;
+}
+#hourHand2 {
+	position:absolute;
+	margin:0px 0px 0px 0px;
+	transform:rotate(0deg);
+	height:180px;
+	animation:hourHand2 2s infinite;
+	animation-play-state:all;
+}
 
 
 
+@keyframes secondHand {
+	from {transform:rotate(0deg);}
+	to {transform:rotate(360deg);}
+}
+
+@keyframes hourHand2 {
+	from {transform:rotate(0deg);}
+	to {transform:rotate(-360deg);}
+}
