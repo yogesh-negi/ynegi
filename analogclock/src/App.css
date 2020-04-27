@@ -10,12 +10,11 @@ section {
 .clockbody {
 	height:200px;
 	width:200px;
-	margin:100px 0px 100px 200px;
+	margin:10vw 10vw 10vw 15vw; 
 	border-radius:100%;
 	border:10px solid red;
 	background-image: linear-gradient(white,blue);
-	position:absolute;
-	z-index:-1;
+	position:relative;
 }
 
 #secondsHand {
@@ -66,49 +65,16 @@ section {
 }
 
 
-#secondsIndicator{
-	position:absolute;
-	z-index:-1;
-	margin:90px 0px 0px 35px;
-	transform:rotate(0deg);
-}
 
 
 
 
-#secondsHand2 {
-	position:absolute;
-	margin:-33px 0px 0px -35px;
-	transform:rotate(0deg);
-	height:250px;
-	animation:secondHand 3.1s infinite;
-	animation-play-state:all;
-}
-#minuteHand2 {
-	position:absolute;
-	margin:-33px 0px 0px -35px;
-	transform:rotate(0deg);
-	height:250px;
-	animation:secondHand 2.8s infinite;
-	animation-play-state:all;
-}
-#hourHand2 {
-	position:absolute;
-	margin:0px 0px 0px 0px;
-	transform:rotate(0deg);
-	height:180px;
-	animation:hourHand2 2s infinite;
-	animation-play-state:all;
-}
 
 
 
-@keyframes secondHand {
-	from {transform:rotate(0deg);}
-	to {transform:rotate(360deg);}
-}
 
-@keyframes hourHand2 {
-	from {transform:rotate(0deg);}
-	to {transform:rotate(-360deg);}
-}
+
+
+
+
+
