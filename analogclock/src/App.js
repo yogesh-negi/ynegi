@@ -3,7 +3,6 @@ import './btstyle.css'
 import './App.css'
 import seconds from './seconds.png';
 
-
 class App extends React.Component {
 constructor(props){
   super(props)
@@ -26,10 +25,13 @@ clickHandler = () => {
     })
   } else if (this.state.regularClock === false){
     this.setState({
-      regularClock:true
+      regularClock:true,
+      seconds2:new Date().getSeconds()*6
     })
   }
 }
+
+
 
 
 componentDidMount(){
@@ -49,14 +51,14 @@ break;
 case false:
 
 this.setState((prevState)=>({
-    seconds2:prevState.seconds2+0.10,
+    seconds2:prevState.seconds2+0.12,
   }))
   secondsHand = document.querySelector("#secondsHand").style.transform = "rotate("+this.state.seconds2+"deg)" 
   minute = document.querySelector("#minuteHand").style.transform = "rotate("+this.state.minute+"deg)"
   hour = document.querySelector("#hourHand").style.transform = "rotate("+this.state.hour+"deg)"
 }
 
-},18)
+},20)
 
 /// ------------
   
@@ -68,9 +70,9 @@ render(){
 
       return (<div className="container-fluid">
         <div className="row">
-        <section className="col-6 border border-primary">
-        <button onClick={this.clickHandler}> change </button>
-        <h1>analog clock</h1>
+        <section className="col-6 bg-primary border border-danger">
+        <button className="btn btn-outline-danger btn-block col-3" onClick={this.clickHandler}> CHANGE </button>
+        <h1>ANALOG CLOCK</h1>
         <div className="clockbody">
         <img src={seconds} id="hourHand"/>
         <img src={seconds} id="minuteHand"/>
@@ -83,8 +85,12 @@ render(){
         </span>
         </div>
         </section>
-        <section className=" col-6 text-center border border-danger">
-        <h1>digital clock</h1>
+        <section className="cardwrapper col-6 border border-danger">
+        <div className="row">
+        <div className="m-1 text-center text-success" id="hours">HOURS<br/>{new Date().getHours()}</div>
+        <div className="m-1 text-center text-primary" id="minutes">MINUTES<br/>{new Date().getMinutes()}</div>
+        <div className="m-1 text-center text-warning" id="seconds">SECONDS<br/>{new Date().getSeconds()}</div>
+        </div>
         </section>
         </div>
     </div>)}
