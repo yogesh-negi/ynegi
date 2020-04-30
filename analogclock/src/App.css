@@ -10,13 +10,15 @@ section {
 .clockbody {
 	height:200px;
 	width:200px;
-	margin:10vw 10vw 10vw 15vw; 
+	min-width:200px;
 	border-radius:100%;
 	background-image: linear-gradient(blue,white);
 	position:relative;
 	border:5px solid black;
 	box-shadow:0px 0px 10px 1px white;
+	font-size: 100%;
 }
+
 
 #secondsHand {
 	position:absolute;
@@ -32,51 +34,35 @@ section {
 }
 #hourHand {
 	position:absolute;
-	margin:1px 0px 0px 8px;
+	margin:1px 0px 0px 5px;
 	transform:rotate(0deg);
 	height:180px;
 }
 
-.digits {
-	float:right;
-}
+
+
+
+
 
 .digits :nth-Child(1){
-	margin:0px 0px 0px -101px ;
-	color:black;
 	position:absolute;
-	animation:digitscolorchange 1s infinite;
-}
-
-.digits :nth-Child(2){
-	margin:77px 0px 0px -15px ;
-	color:black;
-	position:absolute;
-	animation:digitscolorchange 1.1s infinite;
+	margin:0px 0px 0px 85px;
 }
 
 .digits :nth-Child(3){
-	margin:165px 0px 0px -98px ;
-	color:black;
 	position:absolute;
-	animation:digitscolorchange 1.2s infinite;
+	margin:165px 0px 0px 92px;
+}
 
+.digits :nth-Child(2){
+	position:absolute;
+	margin:80px 0px 0px 175px;
 }
 
 .digits :nth-Child(4){
-	margin:79px 0px 0px -185px ;
-	color:black;
 	position:absolute;
-	animation:digitscolorchange 1.3s infinite;
+	margin:80px 0px 0px 5px;
 }
-
-@keyframes digitscolorchange {
-	0% {color:black;}
-	50% {color:white;}
-	75% {color:black;}
-	100% {color:white;}
-} 
-
 
 .cardwrapper {
 background-image: linear-gradient(230deg,blue,red,white);
