@@ -59,18 +59,25 @@ function checkNumbers2(numbers){
 return player2score.lastIndexOf(numbers) !== -1;
 }
 
-for(let i=1; i<8; i++){
+
+let refreshPage = function(){setTimeout(()=>{
+  window.location.reload()
+},1000)
+}
+
+
+for(let i=0; i<8; i++){
 let winningArray1 = winningScore[i].winning.every(checkNumbers)
 let winningArray2 = winningScore[i].winning.every(checkNumbers2)
 let msg = document.querySelector("#msg");
-
 
 if(winningArray1 &&  gameOver === false){
 setTimeout(()=>{
 msg.style.display = "block"
 msg.innerHTML = "Player 1 won"
-gameOver=true
+gameOver = true
 },500)
+refreshPage()
 }
 
 /*winningScore[i].winning.every(checkNumbers2)?setTimeout(()=>{
@@ -80,10 +87,12 @@ alert('player 2 won')
 if(winningArray2 && gameOver === false){
 setTimeout(()=>{
 msg.style.display = "block"	
-msg.innerHTML = "Player 2 won"	
+msg.innerHTML = "Player 2 won"
 gameOver = true
 },500)
+refreshPage()
 }
+
 }
 })
 })
