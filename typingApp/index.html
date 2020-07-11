@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="./externalfile.js"></script>
+
 <style>
 
 ::-webkit-scrollbar{
@@ -59,6 +61,7 @@ margin:1%;
 background:black;
 color:white;
 padding:1%;
+line-height:2rem;
 }
 
 #typelesson{
@@ -110,8 +113,7 @@ text-align:justify;
 </div>
 <script>
 
-let array = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur elit leo, fermentum a aliquet id, eleifend eget libero. Integer pharetra consectetur ultrices. Quisque rutrum elit a velit fringilla imperdiet. Suspendisse viverra turpis tellus, non tincidunt lectus suscipit et. Curabitur ullamcorper ligula luctus mi lobortis, at semper dolor faucibus. In vulputate odio ut scelerisque viverra. Phasellus ultricies vitae ligula a aliquam. Fusce sapien augue, posuere vel eros quis, feugiat viverra nibh. Morbi placerat sapien vehicula faucibus rhoncus. Mauris id ex odio. Curabitur vestibulum leo non eros vulputate, quis gravida nisl tempor. Quisque et risus eget magna iaculis auctor eu at nisi. Mauris tempus, odio quis interdum molestie, purus turpis rutrum massa, quis sodales mauris augue in odio. Phasellus sagittis gravida felis et iaculis. Morbi eget felis non felis lacinia dapibus eget id urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent venenatis metus eu ante molestie imperdiet. Nullam quis condimentum sem. Sed ornare semper rutrum. Integer metus sem, pellentesque laoreet dolor eget, ultricies finibus purus. Phasellus congue ante lorem, quis egestas orci ultricies ac. Ut congue turpis ut nunc viverra, auctor sodales arcu porta. Etiam gravida suscipit lorem quis suscipit. Duis cursus ac nibh in consectetur. Proin porttitor volutpat justo non semper. Donec in eleifend nunc, in posuere ex. Aenean sollicitudin mauris ut cursus finibus. Quisque efficitur, nisl et bibendum sodales, metus mauris sodales est, vel vehicula libero nulla ac est. Mauris nec ante neque. Nam blandit molestie diam eu ornare. Vivamus pellentesque velit sit amet ultrices euismod. In faucibus libero odio, in aliquet libero mollis non. Nunc sed odio augue. Maecenas eu ante volutpat, semper massa malesuada, rhoncus ligula."
-
+let array
 let x = new Date();
 let minutes , seconds;
 let getminutes , getseconds, unit, dummyText, wrongwords
@@ -124,6 +126,7 @@ count:0,
 };
 
 typedlesson.addEventListener('keydown', (e)=>{
+
     if(e.key === "Enter"){
         parentelement.scrollBy(0, 200);
     }
@@ -147,6 +150,7 @@ typedlesson.addEventListener('keydown', (e)=>{
 
 function ShowTestScreen(e){
  document.querySelector(".secondscreen").style.display = "flex"
+array = data[Math.floor(Math.random() * 2)+0].paragraph
 dummyText = array.split(" ");
 dummyText.map((val,i)=>{
 let spanelement = document.createElement("span");
@@ -157,7 +161,6 @@ appendPelement.appendChild(textNode);
 })
 minutes = e.target.value;
 seconds = "00";
-
 stopwatch.innerHTML = minutes+" minute "+seconds+" second's"
 document.querySelector(".firstScreen").style.display = "none";
 stopwatchContainer.style.display = "block";
@@ -175,7 +178,7 @@ stopwatch.innerHTML = getminutes+" minute "+getseconds+" second's"
 
 let wordsarray = typedlesson.value.split(" ")
 wordsarray.splice(wordsarray.lastIndexOf(""), 1)
-words.count = wordsarray.length;
+words.count = wordsarray.length/minutes;
 
 if(x.getMinutes() === 0 && x.getSeconds() === 0){
 wrongwords = 0
@@ -193,7 +196,9 @@ document.querySelector(".timer").innerHTML = `Gross Speed: ${words.count} words 
 
 let interval2 = setInterval(()=>{
 let spantag = document.querySelectorAll("span");
-let searchword = typedlesson.value;
+let removeSpaces = typedlesson.value.replace(/  +/g,'');
+ typedlesson.value = removeSpaces
+ let searchword = removeSpaces
 let typedwordsarray = searchword.split(" ");
 let index = typedwordsarray.length-1;
 spantag[index].style.color = "blue"
