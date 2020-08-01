@@ -27,13 +27,7 @@ array.forEach((val)=>{
 let food = document.querySelectorAll('.playground div');
 food[randomnumber].style.background = "blue"
 
-let keydown = ()=>{
-  currentfunction = "ArrowDown"
-  array.push(number)
-  if(snake_y_cord > plagroundcords.bottom - 15) number -= 625
-  snake[array[array.length-snakelength]].style.background !== "red"?snake[array[array.length-snakelength]].style.background = "black":snake[array[array.length-snakelength]].style.background = "red"
-  number+=25
-  snake[number].style.background = "white"
+let snakedie = () => {
   if(snakelength>4){
     for(let i=array.length;i>=array.length-snakelength;i--){
       if(array[i] == number){
@@ -47,6 +41,16 @@ let keydown = ()=>{
   }
 }
 
+let keydown = ()=>{
+  currentfunction = "ArrowDown"
+  array.push(number)
+  if(snake_y_cord > plagroundcords.bottom - 15) number -= 625
+  snake[array[array.length-snakelength]].style.background !== "red"?snake[array[array.length-snakelength]].style.background = "black":snake[array[array.length-snakelength]].style.background = "red"
+  number+=25
+  snake[number].style.background = "white"
+  snakedie()
+}
+
 let keyright = ()=>{
   currentfunction = "ArrowRight"
   array.push(number)
@@ -54,17 +58,7 @@ if(snake_x_cord>=plagroundcords.left+280) number -= 25
 snake[array[array.length-snakelength]].style.background !== "red"?snake[array[array.length-snakelength]].style.background = "black":snake[array[array.length-snakelength]].style.background = "red"
 number++
 snake[number].style.background = "white"
-if(snakelength>4){
-  for(let i=array.length;i>=array.length-snakelength;i--){
-    if(array[i] == number){
-      array.forEach((val)=>{
-        return snake[val].style.background == "white"?snake[val].style.background = "black":false
-      })
-        snakelength = 3;
-        array = [array[array.length-1],array[array.length-2]]
-    }
-  }
-}
+snakedie()
 }
 
 let keyleft = ()=>{
@@ -74,17 +68,7 @@ let keyleft = ()=>{
   snake[array[array.length-snakelength]].style.background !== "red"?snake[array[array.length-snakelength]].style.background = "black":snake[array[array.length-snakelength]].style.background = "red"
   number--
   snake[number].style.background = "white"
-  if(snakelength>4){
-    for(let i=array.length;i>=array.length-snakelength;i--){
-      if(array[i] == number){
-        array.forEach((val)=>{
-          return snake[val].style.background == "white"?snake[val].style.background = "black":false
-        })
-        snakelength = 3;
-        array = [array[array.length-1],array[array.length-2]]
-      }
-    }
-  }
+  snakedie()
 }
 let keyup = ()=>{
   currentfunction = "ArrowUp"
@@ -93,17 +77,7 @@ let keyup = ()=>{
 snake[array[array.length-snakelength]].style.background !== "red"?snake[array[array.length-snakelength]].style.background = "black":snake[array[array.length-snakelength]].style.background = "red"  
 number-=25
 snake[number].style.background = "white"
-if(snakelength>4){
-  for(let i=array.length;i>=array.length-snakelength;i--){
-    if(array[i] == number){
-      array.forEach((val)=>{
-        return snake[val].style.background == "white"?snake[val].style.background = "black":false
-      })
-        snakelength = 3;
-        array = [array[array.length-1],array[array.length-2]]
-    }
-  }
- }
+snakedie()
 }
 
 function moveSnake(e){
@@ -170,4 +144,3 @@ playground.addEventListener("keydown", moveSnake)
 }
 
 export default App;
-
