@@ -41,3 +41,46 @@
 	-webkit-text-stroke:0.5px red;
 	border:1px solid red;
 }	
+
+
+
+
+
+
+
+.wrapper{
+  width:500px;
+  border:2px solid red;
+  display:flex;
+  overflow:hidden;
+  box-shadow:0 0 10px blue;
+  margin:10%;
+}
+
+.container
+{
+  width:100%;
+  height:300px;
+  background:lightblue;
+  display:flex;
+  transform:translate(-100%);
+}
+
+.first, .second, .third, .zero, .end
+{
+  height:300px;
+  width:500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
