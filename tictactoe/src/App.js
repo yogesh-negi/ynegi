@@ -9,7 +9,7 @@ useEffect(()=>{
   
 let button = document.querySelector("#button");
 let value = 1
-let firstchild = document.querySelector(".container");
+let firstchild = document.querySelector(".container2");
 button.addEventListener('click',slider)
 
 function slider(){
@@ -134,7 +134,7 @@ refreshPage()
     <div className="container"><div></div><div></div><div></div></div>
     <div className="container"><div></div><div></div><div></div></div>
     <div class="wrapper">
-  <div class="container">
+  <div class="container2">
  <img src="https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349" class="zero"></img>
   <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2021-land-rover-range-rover-sport-mmp-1-1595270011.jpg" class="first"></img>
   <img src="https://m.economictimes.com/thumb/msid-68271698,width-1200,height-900,resizemode-4,imgsize-84442/untitled-9.jpg" class="second"></img>
