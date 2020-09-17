@@ -5,6 +5,34 @@ function App() {
 useEffect(()=>{
 //_________
 
+  
+  
+let button = document.querySelector("#button");
+let value = 1
+let firstchild = document.querySelector(".container");
+button.addEventListener('click',slider)
+
+function slider(){
+  if(value >= 4) return false
+  value++
+  let getwidth = firstchild.getBoundingClientRect().width;
+  firstchild.style.transform = `translate(${value*-100}%)`;
+   firstchild.style.transition = "1s ease"
+  
+  firstchild.addEventListener('transitionend', () => {
+    
+    if(firstchild.children[value].className == "end"){
+      firstchild.style.transition = "none"
+   firstchild.style.transform = `translate(${-100}%)`;
+      value = 1;
+    }
+  })
+}
+  
+  
+  
+  
+  
 let player1 = true;
 let player1score = []
 let player2score = []
@@ -105,6 +133,16 @@ refreshPage()
     <div className="container"><div></div><div></div><div></div></div>
     <div className="container"><div></div><div></div><div></div></div>
     <div className="container"><div></div><div></div><div></div></div>
+    <div class="wrapper">
+  <div class="container">
+ <img src="https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349" class="zero"></img>
+  <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2021-land-rover-range-rover-sport-mmp-1-1595270011.jpg" class="first"></img>
+  <img src="https://m.economictimes.com/thumb/msid-68271698,width-1200,height-900,resizemode-4,imgsize-84442/untitled-9.jpg" class="second"></img>
+  <img src="https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349" class="third"></img>
+<img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2021-land-rover-range-rover-sport-mmp-1-1595270011.jpg" class="end"></img>
+</div>
+</div>
+<button id="button"> click me!!</button>
 </div>
   );
 }
