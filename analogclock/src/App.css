@@ -1,0 +1,99 @@
+
+section {
+	display:block;
+	align-items: center;
+	height:auto;
+	padding:1%;
+}
+
+
+.clockbody {
+	height:200px;
+	width:200px;
+	min-width:200px;
+	border-radius:100%;
+	background-image: linear-gradient(blue,white);
+	position:relative;
+	border:5px solid black;
+	box-shadow:0px 0px 10px 1px white;
+	font-size: 100%;
+}
+
+
+#secondsHand {
+	position:absolute;
+	margin:-33px 0px 0px -30px;
+	transform:rotate(0deg);
+	height:250px;
+}
+#minuteHand {
+	position:absolute;
+	margin:-33px 0px 0px -30px;
+	transform:rotate(0deg);
+	height:250px;
+}
+#hourHand {
+	position:absolute;
+	margin:1px 0px 0px 5px;
+	transform:rotate(0deg);
+	height:180px;
+}
+
+
+
+
+
+
+.digits :nth-Child(1){
+	position:absolute;
+	margin:0px 0px 0px 85px;
+}
+
+.digits :nth-Child(3){
+	position:absolute;
+	margin:165px 0px 0px 92px;
+}
+
+.digits :nth-Child(2){
+	position:absolute;
+	margin:80px 0px 0px 175px;
+}
+
+.digits :nth-Child(4){
+	position:absolute;
+	margin:80px 0px 0px 5px;
+}
+
+.cardwrapper {
+background-image: linear-gradient(230deg,blue,red,white);
+}
+
+#hours,#minutes,#seconds {
+border-radius:10px; 
+height:200px;
+min-width:120px;
+width:auto;
+padding:1%;
+border:1px solid black;
+box-shadow:0px 0px 10px black;	
+font-size:150%;
+-webkit-text-stroke:0.2px white;
+position:relative;
+
+}
+
+#hours:hover ,#minutes:hover,#seconds:hover {
+transition:transform 4s;
+border:none;
+transform:rotateY(360deg);
+box-shadow:0px 0px 10px black;
+}
+
+h1 {
+	background-image:linear-gradient(red,white);
+	text-shadow:2px 4px 3px black;
+	-webkit-text-stroke:0.2px white;
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
+}
+
