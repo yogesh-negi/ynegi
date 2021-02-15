@@ -23,19 +23,39 @@ songslist:[e.target.value,...this.state.songslist]
 }
 
   openplaylist = (e) => {
-    this.setState({
-      currentpage:e.target.className
+    fetch("http://localhost:4000/test").then(fetcheddata => {
+      return fetcheddata.json()
+    }).then(data => {
+      this.setState({
+        currentpage:data.filter(playlist => {
+          return playlist.playlistname == e.target.title
+        })
+      })
     })
+    
+    // this.setState({
+    //   currentpage:e.target.id
+    // })
   }
 
   ApiCall = () => {
-    fetch("http://localhost:4000/test")
-    .then(res => res.json())
-    .then(response => {
-      this.setState({
-        apiresponse:response
+    fetch("http://localhost:4000/test").then(res => {
+      return res.json()
+    })
+    .then((data) => {
+      let newarray = []
+      data.forEach((val, i) => {
+        if(newarray.lastIndexOf(val.playlistname) ===-1){
+          newarray.push(val.playlistname)
+        } else {
+          delete data[newarray.lastIndexOf(val.playlistname)]
+        }
+        this.setState({
+          apiresponse:data
+        })
       })
     })
+
   }
 
 componentDidMount(){
@@ -54,16 +74,15 @@ render() {
         <li>ABOUT US</li>
         <li>PRICING</li>
       </ul>
+     
       <Form selectedsongs={this.state.songslist}/>
      {
       this.state.currentpage !== ""?<Playlistpage shoplaylist={this.state.currentpage}/>:<Homepage selected={this.openplaylist}/>
      }
-    {this.state.apiresponse.map((data,i)=>{
-      return (
-        <p>
-        <input type="checkbox" className="checkbox" onClick={this.selectedsongs} value={data[0]}/>{data[0]}
-        </p>
-      )})}  
+        {this.state.apiresponse.map((data, i) => {
+       return <img key={i} id={i} onClick={this.openplaylist} title={data.playlistname} src={data.cover} style={{"objectFit":"cover", "margin":"1%", "display":"flex", "height":"200px", "width":"300px"}}/>
+      })}
+      
       </header>
     </div>
   );

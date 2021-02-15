@@ -8,31 +8,51 @@ constructor(props){
         playlistname:"",
         cover:"",
         Name:"",
-        year:""
+        year:"",
+        file:""
     }
 }
 
 getformData = (e) => {
     this.setState({
         [e.target.name]:e.target.value,
-         Name:this.props.selectedsongs
+        Name:this.props.selectedsongs,
+    })
+}
+
+fileFunc = (e) => {
+    this.setState({
+        [e.target.name]:e.target.files[0]
     })
 }
 
 sendDatatoServer = (e) => {
-      e.preventDefault()
-axios.post("http://localhost:4000/test",this.state).then(data=>console.log(data))
+       e.preventDefault()
+      const data = new FormData();
+      data.append('file', this.state.file)
+      data.append('body', JSON.stringify(this.state))
+      if(this.state.file.name){
+ axios.post("http://localhost:4000/test", data).then(data=>{
+     window.location.reload()
+}).catch(error => console.log(error.message))
+
+} else {
+    alert("must choose a file")
+}
 }
 
     render(){
-    return (
-        <form method="POST" action="/">
-            <input type="text" name="playlistname" onChange={this.getformData} value={this.state.playlistname}/>
-            <input type="text" name="cover" onChange={this.getformData} value={this.state.cover}/>
-            <input type="text" name="Name" onChange={this.getformData} value={this.props.selectedsongs}/>
-            <input type="text" name="year" onChange={this.getformData} value={this.state.year}/>
-            <input type="submit" value="submit" onClick={this.sendDatatoServer}/>          
+    return (<>
+        <section className="songlist">
+        </section>
+        <form method="POST" action="/" encType="multipart/form-data">
+            <input type="text" placeholder="Playlist Name" name="playlistname" onChange={this.getformData} value={this.state.playlistname}/>
+            <input type="text" placeholder="Cover Photo Url" name="cover" onChange={this.getformData} value={this.state.cover}/>
+            <input type="text" placeholder="Year" name="year" onChange={this.getformData} value={this.state.year}/>
+            <input type="file" name="file" onChange={this.fileFunc} multiple />
+            <input type="submit" value="submit" onClick={this.sendDatatoServer}/>  
         </form>
+        </>
     )
 }
 }

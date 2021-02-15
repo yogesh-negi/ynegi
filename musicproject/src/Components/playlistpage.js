@@ -2,7 +2,6 @@ import React from "react";
 import {Component} from "react";
 import top50 from "../images/top50 global.jpg"
 import top50selected from "../images/top50selected.jpg"
-import jsondata from "./data.json";
 import MusicPlayer from "./songsaudiofiles"
 
 
@@ -11,7 +10,7 @@ class Playlistpage extends React.Component {
         super(props)
         this.state = {
           songname:"",
-          songsarray:[]
+          songsarray:[],
         }
     }
 
@@ -20,6 +19,7 @@ class Playlistpage extends React.Component {
        songname:e.target.textContent,
      })
     }
+
  
     ChangeSong = (e) => {
       document.querySelectorAll("div>ul>li").forEach((li)=>{
@@ -43,17 +43,17 @@ class Playlistpage extends React.Component {
             <section>
             <div>
             <h1>Homepage</h1>
-            <img src={jsondata[this.props.shoplaylist][Object.keys(jsondata[this.props.shoplaylist]).toString()][0].cover} style={{"height":"70vh","width":"100%", "objectFit":"cover"}} />
+            <img src={this.props.shoplaylist[0].cover} style={{"height":"70vh","width":"100%", "objectFit":"cover"}} />
             </div>
             <div>
-            <img src={jsondata[this.props.shoplaylist][Object.keys(jsondata[this.props.shoplaylist]).toString()][0].cover} style={{"height":"auto","width":"200px", "objectFit":"cover"}} /> 
+            <img src={this.props.shoplaylist[0].cover} style={{"height":"auto","width":"200px", "objectFit":"cover"}} /> 
             <ul>
             {
-            jsondata[this.props.shoplaylist][Object.keys(jsondata[this.props.shoplaylist]).toString()][0].Songs.map((data,i) => {
-              return (
-              <li key={i} onClick={this.Playsong}>{data.Name}</li>
-              )
-            })
+              this.props.shoplaylist.map((val,i) => {
+                return (
+                  <li key={i} onClick={this.Playsong}>{val.Name.toString()}</li>
+                )
+              })
             }
             </ul>
             <MusicPlayer songname={this.state.songname} changesong={(e)=>this.ChangeSong(e)}/>

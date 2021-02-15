@@ -2,7 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var bodyparser = require("body-parser");
-var urlencoder = bodyparser.urlencoded({extended:false});
+var urlencoder = bodyparser.urlencoded({extended:true});
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
@@ -12,15 +12,16 @@ var testApi = require("./routes/testApi");
 var deleteplaylist = require("./routes/deleteplaylist");
 var app = express();
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(cors());
-app.use(bodyparser.json())
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyparser.json({limit:'50mb'}))
+app.use(express.urlencoded({limit:'50mb' , extended: true}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/uploads')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/test",urlencoder, testApi);
