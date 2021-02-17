@@ -1,5 +1,5 @@
 import React from "react";
-import {Component} from "react";
+import {Component, useRef} from "react";
 import top50 from "../images/top50 global.jpg"
 import top50selected from "../images/top50selected.jpg"
 import MusicPlayer from "./songsaudiofiles"
@@ -11,6 +11,7 @@ class Playlistpage extends React.Component {
         this.state = {
           songname:"",
           songsarray:[],
+          callbackfunc:""
         }
     }
 
@@ -23,7 +24,11 @@ class Playlistpage extends React.Component {
  
     ChangeSong = (e) => {
       document.querySelectorAll("div>ul>li").forEach((li)=>{
-        this.state.songsarray.push(li.textContent)
+        if(this.state.songsarray[this.state.songsarray.length] === li.textContent){
+        return false
+        } else {
+          this.state.songsarray.push(li.textContent)
+        }
       })
 
       if(e.target.name == "Next" || e.target.attributes.name.value == "autonext"){
@@ -38,7 +43,10 @@ class Playlistpage extends React.Component {
       }
   }
 
+
+
       render(){
+        
           return (
             <section>
             <div>
@@ -57,6 +65,7 @@ class Playlistpage extends React.Component {
             }
             </ul>
             <MusicPlayer songname={this.state.songname} changesong={(e)=>this.ChangeSong(e)}/>
+            <button onClick={this.getChild}>getchild</button>
             <p>
             <button name="Prev" onClick={this.ChangeSong} >Prev</button>
             <button name="Next" onClick={this.ChangeSong} >Next</button>

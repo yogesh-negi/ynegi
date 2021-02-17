@@ -7,21 +7,33 @@ class MusicPlayer extends Component{
     constructor(props){
         super(props)
         this.state = {
-            audio:songslistobject
+            audio:[],
         }
     }
 
 Updatesrc = () => {
-    let audio = document.querySelector("audio")
-    audio.src = this.state.audio[Object.keys(this.state.audio)[Object.keys(this.state.audio).indexOf(this.props.songname)]]
-}
-componentDidMount(){
-    this.Updatesrc()
+    
+   fetch("http://localhost:4000/openplaylist").then(response => response.json())
+   .then(data => {
+       this.setState({
+           audio:data[data.indexOf(this.props.songname.toString())]
+       }, ()=>{
+            let audio = document.querySelector("audio");
+            audio.src = "http://localhost:4000/"+this.state.audio
+       })
+   })
+ 
 }
 
-componentDidUpdate(){
-    this.Updatesrc()
+componentDidUpdate(prevProps, prevState, snapshot){
+    if(this.state.audio && prevState.audio.length == 0){
+        this.Updatesrc()
+    } else {
+        return false
+    }
 }
+
+
 
     render(){
         return (

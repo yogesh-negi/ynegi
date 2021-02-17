@@ -45,10 +45,10 @@ songslist:[e.target.value,...this.state.songslist]
     .then((data) => {
       let newarray = []
       data.forEach((val, i) => {
-        if(newarray.lastIndexOf(val.playlistname) ===-1){
+        if(newarray.indexOf(val.playlistname) ===-1){
           newarray.push(val.playlistname)
         } else {
-          delete data[newarray.lastIndexOf(val.playlistname)]
+          delete data[newarray.indexOf(val.playlistname)]
         }
         this.setState({
           apiresponse:data
