@@ -26,11 +26,13 @@ Updatesrc = () => {
 }
 
 componentDidUpdate(prevProps, prevState, snapshot){
-    if(this.state.audio && prevState.audio.length == 0){
-        this.Updatesrc()
-    } else {
-        return false
-    }
+if(prevProps.songname !== this.props.songname){
+    this.Updatesrc()
+} else {
+return false
+}
+
+
 }
 
 
