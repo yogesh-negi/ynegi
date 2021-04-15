@@ -23,7 +23,7 @@ songslist:[e.target.value,...this.state.songslist]
 }
 
   openplaylist = (e) => {
-    fetch("http://localhost:4000/test").then(fetcheddata => {
+    fetch("https://yogeshnegi.online/home").then(fetcheddata => {
       return fetcheddata.json()
     }).then(data => {
       this.setState({
@@ -39,8 +39,8 @@ songslist:[e.target.value,...this.state.songslist]
   }
 
   ApiCall = () => {
-    fetch("http://localhost:4000/test").then(res => {
-      return res.json()
+    fetch("https://yogeshnegi.online/home").then(res => {
+      return res.json();
     })
     .then((data) => {
       let newarray = []

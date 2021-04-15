@@ -100,7 +100,6 @@ var storage = multer.diskStorage({
 
 
 
-
 // let Schema = mongoose.Schema
 // let blogpostschma = new Schema({
 //  name:String,

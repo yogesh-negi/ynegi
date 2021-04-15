@@ -10,7 +10,7 @@ removeplaylist = (e) => {
   let object = {
     data:e.target.value
   }
-  axios.post("http://localhost:4000/delete", object).then(data => console.log(data))
+  axios.post("https://yogeshnegi.online/delete", object).then(data => console.log(data))
 }
 
       render(){

@@ -13,15 +13,17 @@ class MusicPlayer extends Component{
 
 Updatesrc = () => {
     
-   fetch("http://localhost:4000/openplaylist").then(response => response.json())
-   .then(data => {
+   fetch("https://yogeshnegi.online/Openplaylist").then(response => response.json())
+
+       .then(data => {
        this.setState({
-           audio:data[data.indexOf(this.props.songname.toString())]
-       }, ()=>{
-            let audio = document.querySelector("audio");
-            audio.src = "http://localhost:4000/"+this.state.audio
-       })
-   })
+            audio:data[data.indexOf(this.props.songname.toString())]
+        }, ()=>{
+            console.log(this.state.audio)
+             let audio = document.querySelector("audio");
+            audio.src = "https://yogeshnegi.online/"+this.state.audio
+        })
+    })
  
 }
 

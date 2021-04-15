@@ -32,7 +32,7 @@ sendDatatoServer = (e) => {
       data.append('file', this.state.file)
       data.append('body', JSON.stringify(this.state))
       if(this.state.file.name){
- axios.post("http://localhost:4000/test", data).then(data=>{
+ axios.post("https://yogeshnegi.online/upload", data).then(data=>{
      window.location.reload()
 }).catch(error => console.log(error.message))
 
