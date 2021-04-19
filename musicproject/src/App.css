@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+/* audio{
+  display:none;
+} */
+
+
+.customPlayer {
+background:gold;
+padding:1%;
+height:40px;
+width:50%;
+display:flex;
+flex-wrap:wrap;
+flex-direction: row;
+justify-content:space-between;
+align-items:center;
+}
