@@ -14,29 +14,39 @@ class MusicPlayer extends Component{
     }
 
 Updatesrc = () => {
-    
+
    fetch("https://yogeshnegi.online/Openplaylist").then(response => response.json())
 
        .then(data => {
        this.setState({
             audio:data[data.indexOf(this.props.songname.toString())]
         }, ()=>{
-            console.log(this.state.audio)
-             let audio = document.querySelector("audio");
-            audio.src = "https://yogeshnegi.online/"+this.state.audio
+            let audio = document.querySelector("audio");
+             let range = document.querySelector(".range");
+             range.max = audio.duration; 
+             audio.src = "https://yogeshnegi.online/"+this.state.audio
         })
     })
  
 }
 
+skipsong = () => {
+    let audio = document.querySelector("audio");
+    let range = document.querySelector(".range");
+    range.max = audio.duration;
+    audio.currentTime = range.value    
+}
+
+
+
+
 componentDidUpdate(prevProps, prevState, snapshot){
+    
 if(prevProps.songname !== this.props.songname){
     this.Updatesrc()
 } else {
 return false
 }
-
-
 }
 
 
@@ -54,20 +64,17 @@ return false
             <p className="currenttime"></p>
             
             <div>
-            <FontAwesomeIcon icon={faArrowLeft} />
+            <FontAwesomeIcon className="Icons" icon={faArrowLeft} name="Prev" onClick={(e)=>{this.props.changesong(e)}}/>
             
             </div>
             <div>
-            <FontAwesomeIcon icon={faPause} />
+            <FontAwesomeIcon className="Icons" icon={faPlay} id="PlayPause" />
             </div>
             <div>
-            <FontAwesomeIcon icon={faPlay} />
-            </div>
-            <div>
-            <FontAwesomeIcon icon={faArrowRight} />
+            <FontAwesomeIcon className="Icons" icon={faArrowRight} name="Next" onClick={(e)=>{this.props.changesong(e)}}/>
             </div>
             </div>
-            <input type="range"/>
+            <input type="range" onChange={()=>{this.skipsong()}} defaultValue="0" className="range"/>
             </section>
             
             </div>
