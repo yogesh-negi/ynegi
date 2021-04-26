@@ -10,6 +10,8 @@ class MusicPlayer extends Component{
         super(props)
         this.state = {
             audio:[],
+            playpause:faPlay,
+            vol:30,
         }
     }
 
@@ -23,8 +25,15 @@ Updatesrc = () => {
         }, ()=>{
             let audio = document.querySelector("audio");
              let range = document.querySelector(".range");
-             range.max = audio.duration; 
-             audio.src = "https://yogeshnegi.online/"+this.state.audio
+             let vol = document.querySelector(".volume");
+             range.max = audio.duration;
+             audio.volume = this.state.vol/100 
+             vol.value = this.state.vol;
+             setInterval(()=>{
+                range.value = audio.currentTime
+            },100)
+                audio.src = "https://yogeshnegi.online/"+this.state.audio;
+                if(this.state.playpause.iconName == "play") audio.pause()
         })
     })
  
@@ -33,15 +42,30 @@ Updatesrc = () => {
 skipsong = () => {
     let audio = document.querySelector("audio");
     let range = document.querySelector(".range");
-    range.max = audio.duration;
-    audio.currentTime = range.value    
+    range.max = audio.duration; 
+    audio.currentTime = range.value 
+}
+
+playpause = (e) => {
+    let audio = document.querySelector("audio"); 
+    if(this.state.playpause.iconName == "play"){
+        this.setState({
+            playpause:faPause
+        }, ()=>{
+            audio.play()
+        })
+    } else {
+        this.setState({
+            playpause:faPlay
+        }, ()=>{
+            audio.pause()
+        })
+    }
 }
 
 
-
-
 componentDidUpdate(prevProps, prevState, snapshot){
-    
+   
 if(prevProps.songname !== this.props.songname){
     this.Updatesrc()
 } else {
@@ -49,6 +73,19 @@ return false
 }
 }
 
+componentDidMount(){
+        this.Updatesrc()
+}
+
+volumbutton = () => {
+    let audio = document.querySelector("audio");
+    let volume = document.querySelector(".volume");
+    this.setState({
+        vol:volume.value
+    },()=>{
+        audio.volume = this.state.vol/100;
+    })
+    }
 
 
     render(){
@@ -62,19 +99,18 @@ return false
             <div className="customPlayer">
             <p>{this.props.songname}</p>
             <p className="currenttime"></p>
-            
             <div>
             <FontAwesomeIcon className="Icons" icon={faArrowLeft} name="Prev" onClick={(e)=>{this.props.changesong(e)}}/>
-            
             </div>
             <div>
-            <FontAwesomeIcon className="Icons" icon={faPlay} id="PlayPause" />
+            <FontAwesomeIcon className="Icons" onClick={(e)=>{this.playpause(e)}} icon = {this.state.playpause} id="PlayPause" />
             </div>
             <div>
             <FontAwesomeIcon className="Icons" icon={faArrowRight} name="Next" onClick={(e)=>{this.props.changesong(e)}}/>
             </div>
             </div>
             <input type="range" onChange={()=>{this.skipsong()}} defaultValue="0" className="range"/>
+            <p>Audio</p><input type="range" onChange={()=>this.volumbutton()} className="volume" defaultValue="50" max="100"/>
             </section>
             
             </div>

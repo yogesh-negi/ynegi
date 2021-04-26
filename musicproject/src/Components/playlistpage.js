@@ -11,7 +11,7 @@ class Playlistpage extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-          songname:"",
+          songname:this.props.shoplaylist[0].Name,
           songsarray:[],
           callbackfunc:""
         }
@@ -48,7 +48,6 @@ class Playlistpage extends React.Component {
   }
 
 
-
       render(){
         
           return (
@@ -69,11 +68,10 @@ class Playlistpage extends React.Component {
             }
             </ul>
             <MusicPlayer songname={this.state.songname} changesong={(e)=>this.ChangeSong(e)}/>
-            <button onClick={this.getChild}>getchild</button>
             </div>
             </section>
         )
       }
 }
 
-export default Playlistpage  
+export default Playlistpage
