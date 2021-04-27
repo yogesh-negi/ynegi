@@ -4,6 +4,7 @@ import React from "react"
 import Playlistpage from "./Components/playlistpage"
 import Homepage from "./Components/Homepage"
 import Form from "./Components/form"
+import { get } from "mongoose";
 
 
 class App extends React.Component {
@@ -32,10 +33,6 @@ songslist:[e.target.value,...this.state.songslist]
         })
       })
     })
-    
-    // this.setState({
-    //   currentpage:e.target.id
-    // })
   }
 
   ApiCall = () => {
@@ -44,18 +41,18 @@ songslist:[e.target.value,...this.state.songslist]
     })
     .then((data) => {
       let newarray = []
-      data.forEach((val, i) => {
-        if(newarray.indexOf(val.playlistname) ===-1){
-          newarray.push(val.playlistname)
+     for(let i=0;i<data.length;i++){
+        if(newarray.indexOf(data[i].playlistname) == -1){
+          newarray.push(data[i].playlistname)
         } else {
-          delete data[newarray.indexOf(val.playlistname)]
+          delete data[i]
         }
-        this.setState({
-          apiresponse:data
-        })
-      })
-    })
+     }
 
+      this.setState({
+        apiresponse:data
+      },()=>{console.log(this.state.apiresponse)})
+    })
   }
 
 componentDidMount(){
