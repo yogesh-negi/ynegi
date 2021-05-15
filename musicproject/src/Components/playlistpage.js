@@ -10,10 +10,10 @@ import { faPlay, faPause, faArrowRight, faArrowLeft} from '@fortawesome/free-sol
 class Playlistpage extends React.Component {
     constructor(props){
         super(props)
+        this.audioPlayer = React.createRef();
         this.state = {
           songname:this.props.shoplaylist[0].Name,
           songsarray:[],
-          callbackfunc:""
         }
     }
 
@@ -47,6 +47,9 @@ class Playlistpage extends React.Component {
       }
   }
 
+  componentDidMount(){
+    this.audioPlayer.current.focus()
+  }
 
       render(){
         
@@ -57,7 +60,7 @@ class Playlistpage extends React.Component {
             <img src={this.props.shoplaylist[0].cover} style={{"height":"70vh","width":"100%", "objectFit":"cover"}} />
             </div>
             <div>
-            <img src={this.props.shoplaylist[0].cover} style={{"height":"auto","width":"200px", "objectFit":"cover"}} /> 
+            <img tabIndex="0" ref={this.audioPlayer} src={this.props.shoplaylist[0].cover} style={{"height":"auto","width":"200px", "objectFit":"cover"}} /> 
             <ul>
             {
               this.props.shoplaylist.map((val,i) => {

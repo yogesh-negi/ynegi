@@ -1,86 +1,58 @@
 import logo from "./images/logo.png"
 import './App.css';
 import React from "react"
-import Playlistpage from "./Components/playlistpage"
 import Homepage from "./Components/Homepage"
 import Form from "./Components/form"
+import Playlistpage from "./Components/playlistpage"
 import { get } from "mongoose";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faHome, faSearch, faBookMedical, faArrowCircleUp} from '@fortawesome/free-solid-svg-icons';
 
 class App extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      apiresponse:[],
-      currentpage:"",
-      songslist:""
-    }
+constructor(props){
+  super(props)
+  this.state = {
+    homepage:true,
+    form:false,
+    currentpage:""
   }
-
-selectedsongs = (e) => {
-this.setState({
-songslist:[e.target.value,...this.state.songslist]
-})
 }
 
-  openplaylist = (e) => {
-    fetch("https://yogeshnegi.online/home").then(fetcheddata => {
-      return fetcheddata.json()
-    }).then(data => {
-      this.setState({
-        currentpage:data.filter(playlist => {
-          return playlist.playlistname == e.target.title
-        })
+openplaylist = (e) => {
+  fetch("https://yogeshnegi.online/home").then(fetcheddata => {
+    return fetcheddata.json()
+  }).then(data => {
+    this.setState({
+      homepage:false,
+      currentpage:data.filter(playlist => {          
+        return playlist.playlistname == e.target.attributes.value.value
       })
     })
-  }
-
-  ApiCall = () => {
-    fetch("https://yogeshnegi.online/home").then(res => {
-      return res.json();
-    })
-    .then((data) => {
-      let newarray = []
-     for(let i=0;i<data.length;i++){
-        if(newarray.indexOf(data[i].playlistname) == -1){
-          newarray.push(data[i].playlistname)
-        } else {
-          delete data[i]
-        }
-     }
-
-      this.setState({
-        apiresponse:data
-      },()=>{console.log(this.state.apiresponse)})
-    })
-  }
-
-componentDidMount(){
-  this.ApiCall()
+  })
 }
 
+getForm = () => {
+if(this.state.homepage){
+  this.setState({
+    homepage:false,
+    form:true
+  })
+}
+}
 
 render() {
-
   return (
-    <div>
-      <header>
-      <ul>
-        <li><img src={logo} style={{"height":"50px","width":"50px"}}/></li>
-        <li>HOME</li>
-        <li>ABOUT US</li>
-        <li>PRICING</li>
+    <div className="container">
+      <ul className="Header">
+        <li><img src={logo} style={{"height":"20vh","width":"12vw"}}/></li>
+        <li><FontAwesomeIcon icon={faHome} style={{"margin-right":"10px", "font-size":"130%"}}/> Home </li>
+        <li><FontAwesomeIcon icon={faSearch} style={{"margin-right":"10px", "font-size":"130%"}}/> Search</li>
+        <li><FontAwesomeIcon icon={faBookMedical} style={{"margin-right":"10px", "font-size":"130%"}}/> Your Library</li>
+        <li onClick={()=>this.getForm()}><FontAwesomeIcon icon={faArrowCircleUp} style={{"margin-right":"10px", "font-size":"130%"}}/> Upload</li>
       </ul>
-     
-      <Form selectedsongs={this.state.songslist}/>
-     {
-      this.state.currentpage !== ""?<Playlistpage shoplaylist={this.state.currentpage}/>:<Homepage selected={this.openplaylist}/>
-     }
-        {this.state.apiresponse.map((data, i) => {
-       return <img key={i} id={i} onClick={this.openplaylist} title={data.playlistname} src={data.cover} style={{"objectFit":"cover", "margin":"1%", "display":"flex", "height":"200px", "width":"300px"}}/>
-      })}
-      
-      </header>
+      {
+      this.state.homepage?<Homepage shoplaylist={(e)=>{this.openplaylist(e)}}/>:this.state.form?<Form/>: this.state.currentpage?<Playlistpage shoplaylist={this.state.currentpage} />:false
+      }
     </div>
   );
 }

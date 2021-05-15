@@ -42,17 +42,15 @@ sendDatatoServer = (e) => {
 }
 
     render(){
-    return (<>
-        <section className="songlist">
-        </section>
+    return (<section>
         <form method="POST" action="/" encType="multipart/form-data">
-            <input type="text" placeholder="Playlist Name" name="playlistname" onChange={this.getformData} value={this.state.playlistname}/>
-            <input type="text" placeholder="Cover Photo Url" name="cover" onChange={this.getformData} value={this.state.cover}/>
-            <input type="text" placeholder="Year" name="year" onChange={this.getformData} value={this.state.year}/>
-            <input type="file" name="file" onChange={this.fileFunc} multiple />
-            <input type="submit" value="submit" onClick={this.sendDatatoServer}/>  
+            <p><input type="text" placeholder="Playlist Name" name="playlistname" onChange={this.getformData} value={this.state.playlistname}/></p>
+            <p><input type="text" placeholder="Cover Photo Url" name="cover" onChange={this.getformData} value={this.state.cover}/></p>
+            <p><input type="text" placeholder="Year" name="year" onChange={this.getformData} value={this.state.year}/></p>
+            <p><input type="file" name="file" onChange={this.fileFunc} multiple /></p>
+            <p><input type="submit" value="submit" onClick={this.sendDatatoServer}/>  </p>
         </form>
-        </>
+        </section>
     )
 }
 }
