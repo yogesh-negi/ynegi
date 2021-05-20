@@ -4,13 +4,12 @@ import top50 from "../images/top50 global.jpg"
 import top50selected from "../images/top50selected.jpg"
 import MusicPlayer from "./songsaudiofiles"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause, faArrowRight, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faHeart} from '@fortawesome/free-solid-svg-icons';
 
 
 class Playlistpage extends React.Component {
     constructor(props){
         super(props)
-        this.audioPlayer = React.createRef();
         this.state = {
           songname:this.props.shoplaylist[0].Name,
           songsarray:[],
@@ -47,30 +46,37 @@ class Playlistpage extends React.Component {
       }
   }
 
-  componentDidMount(){
-    this.audioPlayer.current.focus()
-  }
+
 
       render(){
         
           return (
-            <section>
+            <section className="plContainer">
+            <div className="pwall">
+              <div>
+            <img src={this.props.shoplaylist[0].cover}/>
             <div>
-            <h1>Homepage</h1>
-            <img src={this.props.shoplaylist[0].cover} style={{"height":"70vh","width":"100%", "objectFit":"cover"}} />
+            <h6>PLAYLIST</h6> 
+            <h1>This is {this.props.shoplaylist[0].playlistname}</h1>
+            <h6>Listen to all of Ed's essential tracks in one place</h6>
             </div>
-            <div>
-            <img tabIndex="0" ref={this.audioPlayer} src={this.props.shoplaylist[0].cover} style={{"height":"auto","width":"200px", "objectFit":"cover"}} /> 
-            <ul>
+            </div>
+            </div>
+            <div className="playList">
+              <div className="pheader">
+              <div><div>#</div><div>TITLE</div></div>
+              <div><div>ALBUM</div><div>DURATION</div></div>
+              </div>
             {
               this.props.shoplaylist.map((val,i) => {
                 return (
-                  <li key={i} onClick={this.Playsong}>{val.Name.toString()}</li>
+                  <div className="track" key={i} onClick={this.Playsong}><div>{i+1}</div><img src={val.cover} style={{"height":"10vh","width":"5vw", "objectFit":"cover", "margin-right":"2%"}}/><span className="trackName">{val.Name.toString()}</span></div>
                 )
               })
             }
-            </ul>
-            <MusicPlayer songname={this.state.songname} changesong={(e)=>this.ChangeSong(e)}/>
+            </div>
+            <div>
+            <MusicPlayer className="audioPlayer" songname={this.state.songname} changesong={(e)=>this.ChangeSong(e)}/>  
             </div>
             </section>
         )

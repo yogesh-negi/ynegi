@@ -8,11 +8,13 @@ import { get } from "mongoose";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faHome, faSearch, faBookMedical, faArrowCircleUp} from '@fortawesome/free-solid-svg-icons';
 
+
 class App extends React.Component {
 constructor(props){
   super(props)
   this.state = {
-    homepage:true,
+    //   // after completing designing for playlistpage make homepage true
+    homepage:false,
     form:false,
     currentpage:""
   }
@@ -25,7 +27,9 @@ openplaylist = (e) => {
     this.setState({
       homepage:false,
       currentpage:data.filter(playlist => {          
-        return playlist.playlistname == e.target.attributes.value.value
+        //return playlist.playlistname == e.target.attributes.value.value
+        return playlist.playlistname == "ed sheeran"
+
       })
     })
   })
@@ -40,6 +44,12 @@ if(this.state.homepage){
 }
 }
 
+componentDidMount(){
+  // after completing designing for playlistpage remove this cycle
+  this.openplaylist()
+  console.log(this.state.currentpage)
+}
+
 render() {
   return (
     <div className="container">
@@ -50,9 +60,10 @@ render() {
         <li><FontAwesomeIcon icon={faBookMedical} style={{"margin-right":"10px", "font-size":"130%"}}/> Your Library</li>
         <li onClick={()=>this.getForm()}><FontAwesomeIcon icon={faArrowCircleUp} style={{"margin-right":"10px", "font-size":"130%"}}/> Upload</li>
       </ul>
-      {
+      {/* {
       this.state.homepage?<Homepage shoplaylist={(e)=>{this.openplaylist(e)}}/>:this.state.form?<Form/>: this.state.currentpage?<Playlistpage shoplaylist={this.state.currentpage} />:false
-      }
+      } */}
+      {this.state.currentpage?<Playlistpage shoplaylist={this.state.currentpage} />:false}
     </div>
   );
 }

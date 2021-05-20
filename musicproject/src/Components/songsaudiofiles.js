@@ -2,7 +2,7 @@ import React from "react";
 import {Component} from "react"
 import jsondata from "./data.json";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause, faArrowRight, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import {faPlay, faPause, faStepForward, faStepBackward, faVolumeUp} from '@fortawesome/free-solid-svg-icons';
 import "../App.css"
 
 class MusicPlayer extends Component{
@@ -65,7 +65,7 @@ playpause = (e) => {
 
 
 componentDidUpdate(prevProps, prevState, snapshot){
-   
+   console.log(this.props)
 if(prevProps.songname !== this.props.songname){
     this.Updatesrc()
 } else {
@@ -97,22 +97,25 @@ volumbutton = () => {
               <source type="audio/mp3" ></source>
             </audio>
             <div className="customPlayer">
-            <p>{this.props.songname}</p>
-            <p className="currenttime"></p>
+            <div><img/>{this.props.songname}</div>
+            <div className="iconContainer">
             <div>
-            <FontAwesomeIcon className="Icons" icon={faArrowLeft} name="Prev" onClick={(e)=>{this.props.changesong(e)}}/>
+            <FontAwesomeIcon className="Icons" icon={faStepBackward} name="Prev" onClick={(e)=>{this.props.changesong(e)}}/>
             </div>
             <div>
             <FontAwesomeIcon className="Icons" onClick={(e)=>{this.playpause(e)}} icon = {this.state.playpause} id="PlayPause" />
             </div>
             <div>
-            <FontAwesomeIcon className="Icons" icon={faArrowRight} name="Next" onClick={(e)=>{this.props.changesong(e)}}/>
-            </div>
+            <FontAwesomeIcon className="Icons" icon={faStepForward} name="Next" onClick={(e)=>{this.props.changesong(e)}}/>
             </div>
             <input type="range" onChange={()=>{this.skipsong()}} defaultValue="0" className="range"/>
-            <p>Audio</p><input type="range" onChange={()=>this.volumbutton()} className="volume" defaultValue="50" max="100"/>
+            </div>
+            <div>
+            <FontAwesomeIcon className="Icons" icon={faVolumeUp}/>
+            <input type="range" onChange={()=>this.volumbutton()} className="volume" defaultValue="50" max="100"/>
+            </div>
+            </div>
             </section>
-            
             </div>
         )
     }
