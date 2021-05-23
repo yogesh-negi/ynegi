@@ -18,10 +18,9 @@ class MusicPlayer extends Component{
 Updatesrc = () => {
 
    fetch("https://yogeshnegi.online/Openplaylist").then(response => response.json())
-
        .then(data => {
        this.setState({
-            audio:data[data.indexOf(this.props.songname.toString())]
+            audio:data[data.indexOf(this.props.songname)]
         }, ()=>{
             let audio = document.querySelector("audio");
              let range = document.querySelector(".range");
@@ -65,7 +64,7 @@ playpause = (e) => {
 
 
 componentDidUpdate(prevProps, prevState, snapshot){
-   console.log(this.props)
+
 if(prevProps.songname !== this.props.songname){
     this.Updatesrc()
 } else {
@@ -97,18 +96,16 @@ volumbutton = () => {
               <source type="audio/mp3" ></source>
             </audio>
             <div className="customPlayer">
-            <div><img/>{this.props.songname}</div>
+            <div><img src={this.props.songcover} style={{"height":"10vh","width":"5vw", "objectFit":"cover", "margin-right":"2%"}}/>{this.props.songname}</div>
             <div className="iconContainer">
             <div>
             <FontAwesomeIcon className="Icons" icon={faStepBackward} name="Prev" onClick={(e)=>{this.props.changesong(e)}}/>
-            </div>
-            <div>
             <FontAwesomeIcon className="Icons" onClick={(e)=>{this.playpause(e)}} icon = {this.state.playpause} id="PlayPause" />
-            </div>
-            <div>
             <FontAwesomeIcon className="Icons" icon={faStepForward} name="Next" onClick={(e)=>{this.props.changesong(e)}}/>
             </div>
+            <div>
             <input type="range" onChange={()=>{this.skipsong()}} defaultValue="0" className="range"/>
+            </div>
             </div>
             <div>
             <FontAwesomeIcon className="Icons" icon={faVolumeUp}/>

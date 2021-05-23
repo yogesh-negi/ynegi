@@ -5,43 +5,49 @@ import top50selected from "../images/top50selected.jpg"
 import MusicPlayer from "./songsaudiofiles"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faHeart} from '@fortawesome/free-solid-svg-icons';
+import { icon } from "@fortawesome/fontawesome-svg-core";
 
 
 class Playlistpage extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-          songname:this.props.shoplaylist[0].Name,
-          songsarray:[],
+          songIndex:0,
+          songname:this.props.shoplaylist[0].Name.toString(),
+          songCover:this.props.shoplaylist[0].cover
         }
     }
 
     Playsong = (e) => {
      this.setState({
-       songname:e.target.textContent,
-     })
+       songIndex:e.target.attributes.index.value,
+     },()=>this.setState({
+      songname:this.props.shoplaylist[this.state.songIndex].Name.toString(),
+      songCover:this.props.shoplaylist[this.state.songIndex].cover
+     }))
     }
 
  
     ChangeSong = (e) => {
-      if(e.target.attributes.name === undefined) return false ;
-
-      document.querySelectorAll("div>ul>li").forEach((li)=>{
-        if(this.state.songsarray[this.state.songsarray.length] === li.textContent){
-        return false
-        } else {
-          this.state.songsarray.push(li.textContent)
-        }
-      })
+      
+      if(e.target.attributes.name == undefined) return false
 
       if(e.target.attributes.name.value == "Next" || e.target.attributes.name.value == "autonext"){
-          this.setState({
-        songname: this.state.songsarray[this.state.songsarray.indexOf(this.state.songname)+1]
-      })
+          this.setState((prevState)=>({
+            songIndex:prevState.songIndex+1,
+          }),()=>{this.setState({
+            songname:this.props.shoplaylist[this.state.songIndex].Name.toString(),
+            songCover:this.props.shoplaylist[this.state.songIndex].cover
+          })
+          })
+
       } else {
-        if(this.state.songsarray.indexOf(this.state.songname) === 0) return false
-        this.setState({
-          songname: this.state.songsarray[this.state.songsarray.indexOf(this.state.songname)-1]
+        this.setState((prevState)=>({
+          songIndex:prevState.songIndex-1,
+        }),()=>{this.setState({
+          songname:this.props.shoplaylist[this.state.songIndex].Name.toString(),
+          songCover:this.props.shoplaylist[this.state.songIndex].cover
+        })
         })
       }
   }
@@ -49,7 +55,6 @@ class Playlistpage extends React.Component {
 
 
       render(){
-        
           return (
             <section className="plContainer">
             <div className="pwall">
@@ -70,13 +75,13 @@ class Playlistpage extends React.Component {
             {
               this.props.shoplaylist.map((val,i) => {
                 return (
-                  <div className="track" key={i} onClick={this.Playsong}><div>{i+1}</div><img src={val.cover} style={{"height":"10vh","width":"5vw", "objectFit":"cover", "margin-right":"2%"}}/><span className="trackName">{val.Name.toString()}</span></div>
+                  <div className="track" index={i} onClick={this.Playsong}><div>{i+1}</div><img index={i} src={val.cover} style={{"height":"10vh","width":"5vw", "objectFit":"cover", "margin-right":"2%"}}/><span index={i} className="trackName">{val.Name.toString()}</span></div>
                 )
               })
             }
             </div>
-            <div>
-            <MusicPlayer className="audioPlayer" songname={this.state.songname} changesong={(e)=>this.ChangeSong(e)}/>  
+            <div className="audioPlayerComp">
+            <MusicPlayer songcover={this.state.songCover} songname={this.state.songname} changesong={(e)=>this.ChangeSong(e)}/>  
             </div>
             </section>
         )
