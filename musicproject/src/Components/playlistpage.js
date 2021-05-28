@@ -4,7 +4,7 @@ import top50 from "../images/top50 global.jpg"
 import top50selected from "../images/top50selected.jpg"
 import MusicPlayer from "./songsaudiofiles"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faHeart} from '@fortawesome/free-solid-svg-icons';
+import {faClock} from '@fortawesome/free-solid-svg-icons';
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
 
@@ -13,7 +13,7 @@ class Playlistpage extends React.Component {
         super(props)
         this.state = {
           songIndex:0,
-          songname:this.props.shoplaylist[0].Name.toString(),
+          songname:this.props.shoplaylist[0].Name,
           songCover:this.props.shoplaylist[0].cover
         }
     }
@@ -22,7 +22,7 @@ class Playlistpage extends React.Component {
      this.setState({
        songIndex:e.target.attributes.index.value,
      },()=>this.setState({
-      songname:this.props.shoplaylist[this.state.songIndex].Name.toString(),
+      songname:this.props.shoplaylist[this.state.songIndex].Name,
       songCover:this.props.shoplaylist[this.state.songIndex].cover
      }))
     }
@@ -36,7 +36,7 @@ class Playlistpage extends React.Component {
           this.setState((prevState)=>({
             songIndex:prevState.songIndex+1,
           }),()=>{this.setState({
-            songname:this.props.shoplaylist[this.state.songIndex].Name.toString(),
+            songname:this.props.shoplaylist[this.state.songIndex].Name,
             songCover:this.props.shoplaylist[this.state.songIndex].cover
           })
           })
@@ -45,7 +45,7 @@ class Playlistpage extends React.Component {
         this.setState((prevState)=>({
           songIndex:prevState.songIndex-1,
         }),()=>{this.setState({
-          songname:this.props.shoplaylist[this.state.songIndex].Name.toString(),
+          songname:this.props.shoplaylist[this.state.songIndex].Name,
           songCover:this.props.shoplaylist[this.state.songIndex].cover
         })
         })
@@ -70,12 +70,12 @@ class Playlistpage extends React.Component {
             <div className="playList">
               <div className="pheader">
               <div><div>#</div><div>TITLE</div></div>
-              <div><div>ALBUM</div><div>DURATION</div></div>
+              <div><div>ALBUM</div><div><FontAwesomeIcon icon={faClock}/></div></div>
               </div>
             {
               this.props.shoplaylist.map((val,i) => {
                 return (
-                  <div className="track" index={i} onClick={this.Playsong}><div>{i+1}</div><img index={i} src={val.cover} style={{"height":"10vh","width":"5vw", "objectFit":"cover", "margin-right":"2%"}}/><span index={i} className="trackName">{val.Name.toString()}</span></div>
+                  <div className="track" index={i} onClick={this.Playsong}><div index={i}>{i+1}<img index={i} src={val.cover} style={{"height":"7vh","width":"5vw", "objectFit":"cover", "margin":"0% 3%"}}/><div index={i} className="trackName">{val.Name}</div></div><div></div><div index={i}>{val.duration}</div></div>
                 )
               })
             }

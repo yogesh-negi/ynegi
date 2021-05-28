@@ -12,22 +12,20 @@ class App extends React.Component {
 constructor(props){
   super(props)
   this.state = {
-    //   // after completing designing for playlistpage make homepage true
-    homepage:false,
+    homepage:true,
     form:false,
     currentpage:"",
   }
 }
 
 openplaylist = (e) => {
-  fetch("https://yogeshnegi.online/home").then(fetcheddata => {
+  fetch("http://localhost/home").then(fetcheddata => {
     return fetcheddata.json()
   }).then(data => {
     this.setState({
       homepage:false,
       currentpage:data.filter(playlist => {          
-        // return playlist.playlistname == e.target.attributes.value.value
-        return playlist.playlistname == "ed sheeran"
+         return playlist.playlistname == e.target.attributes.value.value
 
       })
     })
@@ -41,10 +39,6 @@ getForm = () => {
   })
 }
 
-componentDidMount(){
-  // after completing designing for playlistpage remove this cycle
-  this.openplaylist()
-}
 
 render() {
   return (
@@ -56,10 +50,10 @@ render() {
         <li><FontAwesomeIcon icon={faBookMedical} style={{"margin-right":"10px", "font-size":"130%"}}/> Your Library</li>
         <li onClick={()=>this.getForm()}><FontAwesomeIcon icon={faArrowCircleUp} style={{"margin-right":"10px", "font-size":"130%"}}/> Upload</li>
       </ul>
-      {/* {
+      {
       this.state.homepage?<Homepage shoplaylist={(e)=>{this.openplaylist(e)}}/>:this.state.form?<Form/>:<Playlistpage shoplaylist={this.state.currentpage} />
-      } */}
-       {this.state.currentpage?<Playlistpage shoplaylist={this.state.currentpage}/>:false}
+      }
+       {/* {this.state.currentpage?<Playlistpage shoplaylist={this.state.currentpage} />:false} */}
     </div>
   );
 }

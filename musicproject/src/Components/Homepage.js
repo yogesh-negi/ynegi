@@ -15,7 +15,7 @@ class Homepage extends React.Component {
   }
 
   ApiCall = () => {
-    fetch("https://yogeshnegi.online/home").then(res => {
+    fetch("http://localhost/home").then(res => {
       return res.json();
     })
     .then((data) => {
