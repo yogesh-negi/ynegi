@@ -5,6 +5,7 @@ a, a:active, a:hover {
 
 ::-webkit-scrollbar {
   width:10px;
+  display:none;
 }
 ::-webkit-scrollbar-track {
   background:transparent;
@@ -16,50 +17,37 @@ a, a:active, a:hover {
 }
 
 .container{
-  height:auto;
-  width:100%;
   display:flex;
   background:#000;
   font-family:Arial, Helvetica, sans-serif;
   color:cornsilk;
   font-weight:bolder;
   cursor:pointer;
-  height:100vh;
   overflow:hidden;
-}
-ul :nth-child(2) {
-  margin-top:-10%;
-  padding:0;
 }
 
 .Header {
-  margin:-5% -1%;
   list-style-type: none;
   display:flex;
   flex-direction:column;
-  flex-wrap:wrap;
-  justify-content:space-evenly;
+  justify-content:space-between;
   align-items:flex-start;
-  height:60vh;
   width:22%;
+  height:35vw;
   background:#000;
   color:rgb(211, 206, 219);
   font-size:90%;
   font-weight:bold;
 }
 
-
 .container2 {
 background-image:linear-gradient(rgba(173, 72, 72, 0.562), #070707 300px);
 height:100vh;
 width:77%;
 overflow-y: scroll;
-padding:0% 2%;
 }
 
 .profile {
-  height:auto;
-  width:100%;
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -71,7 +59,9 @@ padding:0% 2%;
   font-size:80%;
   position:sticky;
   top:0px;
-  background:#07070759
+  padding:1%;
+  box-sizing: border-box;
+  background:#07070759;
 }
 
 .profile>h3, .profile>div{
@@ -162,7 +152,8 @@ padding:0% 2%;
   }
 
   .recentSection {
-    width:100%;
+    padding:1%;
+    width:97%;
     display:flex;
     justify-content: flex-start;
     overflow:hidden;
@@ -203,11 +194,11 @@ padding:0% 2%;
   .plContainer {
     display: flex;
     width:80%;
+    height:100vh;
     box-sizing: border-box;
     overflow:auto;
     flex-direction: column;
     font-size:90%;
-    object-fit:cover;
     background-image:linear-gradient(rgba(72, 173, 106, 0.651), rgba(26, 29, 27, 0.966) 60%);   
   }
 

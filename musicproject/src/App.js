@@ -8,6 +8,7 @@ import { get } from "mongoose";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faHome, faSearch, faBookMedical, faArrowCircleUp} from '@fortawesome/free-solid-svg-icons';
 
+
 class App extends React.Component {
 constructor(props){
   super(props)
@@ -44,7 +45,7 @@ render() {
   return (
     <div className="container">
       <ul className="Header">
-        <li><img src={logo} style={{"height":"20vh","width":"12vw"}}/></li>
+      <img src={logo} style={{"width":"12vw"}}/>
         <li><FontAwesomeIcon icon={faHome} style={{"margin-right":"10px", "font-size":"130%"}}/> Home </li>
         <li><FontAwesomeIcon icon={faSearch} style={{"margin-right":"10px", "font-size":"130%"}}/> Search</li>
         <li><FontAwesomeIcon icon={faBookMedical} style={{"margin-right":"10px", "font-size":"130%"}}/> Your Library</li>

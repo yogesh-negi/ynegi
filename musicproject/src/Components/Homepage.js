@@ -52,7 +52,7 @@ render() {
 
   return (
       <div className="container2">
-        <Topsection/>
+         <Topsection/>
         <div className="playlistBanner">
         <div className="greeting">
           {this.state.message<12?"Good morning":this.state.message<17?"Good afternoon":"Good evening"}
