@@ -6,7 +6,7 @@ import MusicPlayer from "./songsaudiofiles"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faClock} from '@fortawesome/free-solid-svg-icons';
 import { icon } from "@fortawesome/fontawesome-svg-core";
-
+import Topsection from "./profileSection"
 
 class Playlistpage extends React.Component {
     constructor(props){
@@ -57,13 +57,16 @@ class Playlistpage extends React.Component {
       render(){
           return (
             <section className="plContainer">
+              <Topsection/>
             <div className="pwall">
-              <div>
+            <div>
             <img src={this.props.shoplaylist[0].cover}/>
+            <div>
             <div>
             <h6>PLAYLIST</h6> 
             <h1>This is {this.props.shoplaylist[0].playlistname}</h1>
             <h6>Listen to all of Ed's essential tracks in one place</h6>
+            </div>
             </div>
             </div>
             </div>
@@ -75,7 +78,7 @@ class Playlistpage extends React.Component {
             {
               this.props.shoplaylist.map((val,i) => {
                 return (
-                  <div className="track" index={i} onClick={this.Playsong}><div index={i}>{i+1}<img index={i} src={val.cover} style={{"height":"7vh","width":"5vw", "objectFit":"cover", "margin":"0% 3%"}}/><div index={i} className="trackName">{val.Name}</div></div><div></div><div index={i}>{val.duration}</div></div>
+                  <div className="track" index={i} onClick={this.Playsong}><div index={i}>{i+1}<img index={i} src={val.cover} style={{"width":"5vw", "objectFit":"cover", "margin":"0% 3%"}}/><div index={i} className="trackName">{val.Name}</div></div><div></div><div index={i}>{val.duration}</div></div>
                 )
               })
             }

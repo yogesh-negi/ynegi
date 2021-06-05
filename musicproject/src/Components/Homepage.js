@@ -1,8 +1,9 @@
 import React from "react"
-import profilepic from "../images/profilepic.JPG";
 import Playlistpage from "./playlistpage"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faSortDown, faPlay} from '@fortawesome/free-solid-svg-icons';
+import {faPlay} from '@fortawesome/free-solid-svg-icons';
+import Topsection from "./profileSection"
+
 
 class Homepage extends React.Component {
   constructor(props){
@@ -51,17 +52,14 @@ render() {
 
   return (
       <div className="container2">
-        <div className="profile">
-        <h3>UPGRADE</h3>
-        <div><img src={profilepic} style={{"height":"30px","width":"30px", "border-radius":"100%","margin-right":"10px"}}/>Yogesh Negi<FontAwesomeIcon icon={faSortDown} style={{"margin":"0 10px", "font-size":"140%"}}/></div>
-        </div>
+        <Topsection/>
         <div className="playlistBanner">
         <div className="greeting">
           {this.state.message<12?"Good morning":this.state.message<17?"Good afternoon":"Good evening"}
         </div>
         <div className="listWrapper">
       {this.state.apiresponse.map((data, i) => {
-       return <section value={data.playlistname} onClick={(e)=>this.props.shoplaylist(e)}><div value={data.playlistname} className="listimage"><img value={data.playlistname} key={i} id={i} src={data.cover} style={{"objectFit":"cover","height":"12vh", "width":"9vw","border-radius":"3px"}}/> <div index={i} value={data.playlistname} className="listName">&nbsp;&nbsp;&nbsp;{data.playlistname}</div></div><div value={data.playlistname} className="Ppbutton"></div></section>
+       return <section value={data.playlistname} onClick={(e)=>this.props.shoplaylist(e)}><img value={data.playlistname} key={i} id={i} src={data.cover} style={{"objectFit":"cover", "width":"20%","border-radius":"3px"}}/><div index={i} value={data.playlistname} className="listName">{data.playlistname}</div><div value={data.playlistname} className="Ppbutton"></div></section>
       })}
       </div>
       <div className="recentHeader">
@@ -70,7 +68,7 @@ render() {
       </div>
       <div className="recentSection">
       {this.state.apiresponse.map((data, i) => {
-       return <section value={data.playlistname} onClick={(e)=>this.props.shoplaylist(e)}><div className="listimage"><img key={i} value={data.playlistname} id={i} src={data.cover} style={{"objectFit":"cover","height":"32vh", "width":"18vw","border-radius":"3px"}}/></div>&nbsp;&nbsp;<div index={i} value={data.playlistname} className="listName">{data.playlistname}</div><div value={data.playlistname} className="Ppbutton Ppbutton2"></div></section>
+       return <section value={data.playlistname} onClick={(e)=>this.props.shoplaylist(e)}><img key={i} value={data.playlistname} id={i} src={data.cover} style={{"objectFit":"cover", "width":"18vw","border-radius":"3px"}}/><div index={i} className="card-name" value={data.playlistname}><p>{data.playlistname}</p></div><div value={data.playlistname} className="Ppbutton Ppbutton2"></div></section>
       })}
       </div>
       </div>

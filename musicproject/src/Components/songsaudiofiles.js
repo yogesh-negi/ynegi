@@ -28,7 +28,6 @@ Updatesrc = () => {
         }, ()=>{
             let audio = document.querySelector("audio");
             audio.volume = this.state.vol/100
-            audio.src = "http://localhost/"+this.state.audio;
             setTimeout(()=>{
                 this.setState({
                     max:audio.duration,
@@ -40,6 +39,7 @@ Updatesrc = () => {
                     },
                 })
             },100)
+            audio.src = "http://localhost/"+this.state.audio;
             if(this.state.playpause.iconName == "play") audio.pause()
         })
     })

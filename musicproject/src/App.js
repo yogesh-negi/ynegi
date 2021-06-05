@@ -54,6 +54,7 @@ render() {
       this.state.homepage?<Homepage shoplaylist={(e)=>{this.openplaylist(e)}}/>:this.state.form?<Form/>:<Playlistpage shoplaylist={this.state.currentpage} />
       }
        {/* {this.state.currentpage?<Playlistpage shoplaylist={this.state.currentpage} />:false} */}
+       
     </div>
   );
 }
